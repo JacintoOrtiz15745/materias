@@ -9,31 +9,32 @@ function viewsArrayInput(){
   var valorselect = select.options[select.selectedIndex].value
   var calificacion = +document.getElementById('calificacion').value
 
-  alumnoarray.push(alumno,valorselect,calificacion,edad)
+  if(alumno != null && calificacion != null && calificacion > 0 && calificacion < 11 && edad != null){
+    alumnoarray.push(alumno,valorselect,calificacion,edad)
+    if(valorselect == "Programacion Web"){
+      cont ++
+      sum_progra += calificacion
+      prom_progra = (sum_progra)/cont
+    }
 
-  if(valorselect == "Programacion Web"){
-    cont ++
-    sum_progra += calificacion
-    prom_progra = (sum_progra)/cont
+    if(valorselect == "Sistemas Embebidos"){
+      cont2 ++
+      sum_sist += calificacion
+      prom_sist = (sum_sist)/cont2
+    }
+
+    document.getElementById('promedio_progra').innerHTML = prom_progra
+    document.getElementById('promedio_sist').innerHTML = prom_sist
+    document.getElementById('new').insertRow(-1).innerHTML = '<tr><td>' + alumnoarray[0 + a] + '</td><td>' + alumnoarray[1 + b] + '</td><td>' + alumnoarray[2 + c] + '</td><td>' +   alumnoarray[3 + d] + '</td></tr>'
+    document.getElementById('alumno').value = null
+    document.getElementById('select').value = null
+    document.getElementById('calificacion').value = null
+    document.getElementById('fecha').value = null
+    a += 4
+    b += 4
+    c += 4
+    d += 4
   }
-
-  if(valorselect == "Sistemas Embebidos"){
-    cont2 ++
-    sum_sist += calificacion
-    prom_sist = (sum_sist)/cont2
-  }
-
-  document.getElementById('promedio_progra').innerHTML = prom_progra
-  document.getElementById('promedio_sist').innerHTML = prom_sist
-  document.getElementById('new').insertRow(-1).innerHTML = '<tr><td>' + alumnoarray[0 + a] + '</td><td>' + alumnoarray[1 + b] + '</td><td>' + alumnoarray[2 + c] + '</td><td>' +   alumnoarray[3 + d] + '</td></tr>'
-  document.getElementById('alumno').value = null
-  document.getElementById('select').value = null
-  document.getElementById('calificacion').value = null
-  document.getElementById('fecha').value = null
-  a += 4
-  b += 4
-  c += 4
-  d += 4
 }
 
 $(function(){
@@ -114,4 +115,17 @@ $(function(){
     }
   });
 
+  $('#agregar').on('click', function(){
+    alumno = $.trim($('#alumno').val());
+    calificacion = $('#calificacion').val();
+    fecha = $('#fecha').val();
+    alert('Información almacenada correctamente')
+
+    if((alumno == '') && (calificacion == '') && (fecha == '')){
+      $('#alumno_validate').removeClass('was-validated');
+      $('#calificacion_validate').removeClass('was-validated');
+      $('#fecha_validate').removeClass('was-validated');
+      $('#agregar').attr("disabled", true);
+    }
+  });
 });
