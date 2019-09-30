@@ -32,33 +32,39 @@
           <div class="card">
             <div class="card-body">
                 <label for="nombre">Nombre</label>
-                <div class="form-group">
+                <div class="form-group" id="alumno_validate">
                   <input type="text" placeholder="Nombre" class="form-control alumno" id="alumno">
                   <small class="text-danger" id="alumno_error"></small>
                 </div>
 
-                <label for="select">Materia</label>
-                <select class="form-control form-group" id="select" onchange="viewsArrayInput()">
-                  <option value="" disabled selected style="display:none;">Elegir</option>
-                  <option value="Programacion Web">Programación Web</option>
-                  <option value="Sistemas Embebidos">Sistemas Embebidos</option>
-                </select>
+
+                <div class="form-group" id="select_validate">
+                  <label for="select">Materia</label>
+                  <select class="custom-select browser-default form-control" id="select">
+                    <option value="" disabled selected="select" style="display:none;">Elegir</option>
+                    <option value="Programacion Web">Programación Web</option>
+                    <option value="Sistemas Embebidos">Sistemas Embebidos</option>
+                  </select>
+                  <div class="invalid-feedback" id="select_error"></div>
+                </div>
 
                 <label for="calificacion">Calificación</label>
-                <div class="form-group">
+                <div class="form-group" id="calificacion_validate">
                   <input type="number" placeholder="Calificación" class="form-control" min="0" max="10" id="calificacion">
                   <small class="text-danger" id="calificacion_error"></small>
                 </div>
 
                 <label for="fecha">Fecha</label>
-                <div class="form-group">
+                <div class="form-group" id="fecha_validate">
                   <input type="date" placeholder="Fecha" class="form-control" id="fecha">
                   <small class="text-danger" id="fecha_error"></small>
                 </div>
 
                 <center>
-                <button type="submit" class="btn btn-primary" onclick="viewsArrayInput()" id="agregar">Agregar</button>
+                <button type="submit" class="btn btn-primary" onclick="viewsArrayInput()" disabled id="agregar">Agregar</button>
                 </center>
+
+
             </div>
           </div>
         </div>
@@ -91,9 +97,16 @@
                 </center>
               </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <small class="float-left">Promedio Programación: <small class="float-rigth" id="promedio_progra"></small></small>
+                <br>
+                <small class="float-left">Promedio Sistemas Embebidos: <small class="float-rigth" id="promedio_sist"></small></small>
+              </div>
+            </div>
           </div>
-          <div class="modal-footer" id="promedio">
-            
+
+          <div class="modal-footer">
           </div>
         </div>
       </div>
